@@ -1,4 +1,4 @@
-const API = "https://youtube-v31.p.rapidapi.com/search?channelId=UCT4Jg8h03dD0iN3Pb5L0PMA&part=snippet%2Cid&order=date&maxResults=9";
+const API = 'https://youtube-v31.p.rapidapi.com/search?channelId=UC55-mxUj5Nj3niXFReG44OQ&part=snippet%2Cid&order=date&maxResults=50';
 
 const content = null || document.getElementById("content");
 
@@ -22,9 +22,10 @@ async function fetchData(urlApi) {
         let view = `
         ${videos.items.map(video => `
         <div class="group relative">
-            <div
-                class="w-full bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:aspect-none">
+            <div class="w-full bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:aspect-none">
+            <a href="${video.snippet.thumbnails.high.url}" class="font-medium text-gray-500 hover:text-gray-900">
                 <img src="${video.snippet.thumbnails.high.url}" alt="${video.snippet.description}" class="w-full">
+            </a>
             </div>
             <div class="mt-4 flex justify-between">
                 <h3 class="text-sm text-gray-700">
@@ -33,8 +34,9 @@ async function fetchData(urlApi) {
                 </h3>
             </div>
         </div>
-        `).slice(0, 8).join("")}
+        `).slice(1, 9).join("")}
         `;
+        content.href = view;
         content.innerHTML = view;
     }
     catch(err){
