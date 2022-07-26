@@ -20,12 +20,10 @@ async function fetchData(urlApi) {
     try{
         const videos = await fetchData(API);
         let view = `
-        ${videos.items.map(video => `
+        ${videos.items.map(video =>`
         <div class="group relative">
             <div class="w-full bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:aspect-none">
-            <a href="${video.snippet.thumbnails.high.url}" class="font-medium text-gray-500 hover:text-gray-900">
                 <img src="${video.snippet.thumbnails.high.url}" alt="${video.snippet.description}" class="w-full">
-            </a>
             </div>
             <div class="mt-4 flex justify-between">
                 <h3 class="text-sm text-gray-700">
@@ -36,10 +34,10 @@ async function fetchData(urlApi) {
         </div>
         `).slice(1, 9).join("")}
         `;
-        content.href = view;
         content.innerHTML = view;
     }
     catch(err){
         console.error(err);
     }
 })();
+
